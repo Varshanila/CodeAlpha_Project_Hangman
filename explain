@@ -1,0 +1,115 @@
+1) Importing Libraries:
+
+eg :  import random
+
+Here, the random module is imported. It will be used to randomly select a word from a predefined list.
+
+2) Defining choose_word() Function:
+[ eg:
+       def choose_word():
+           words=['python','hangman','programming','computer','game','code']
+           return random.choice(words)   ]
+
+This function selects a random word from the list words and returns it.
+
+3) Defining display_word(word,guessed_letters) Function:
+[eg:
+
+def display_word(word,guessed_letters):
+    display =''
+    for letter in word:
+        if letter in guessed_letters:
+            display += letter
+        else:
+            display += '_'    
+    return display         ]
+
+This function takes the word to be guessed and a list of guessed_letters. 
+It then iterates through each letter in the word. If the letter has been guessed (in guessed_letters), it adds the letter to the display, otherwise, it adds an underscore _. 
+It returns the display.
+
+4)Defining hangman() Function:
+[ eg:
+        def hangman():
+            word=choose_word() 
+            guessed_letters =[]    
+            attempts = 6
+    
+            print("Welcome to Hangman!")
+            print("Guess the word")         ]
+
+This function initializes the game by calling choose_word() to get the word to be guessed, initializes an empty list guessed_letters to store guessed letters,
+and sets the number of attempts to 6. It then prints a welcome message.
+
+5)Game Loop:
+[ eg:
+    while True:  ]
+
+The game runs in an infinite loop until it's either won or lost.
+
+6)Printing Game State:
+[ eg:
+        print("\nAttempts left:", attempts)
+        print("Word:", display_word(word,guessed_letters))           ]
+
+It displays the number of attempts left and the current state of the word (with guessed letters revealed and unguessed letters as underscores).
+
+7)Checking for Win Condition:
+[  eg:
+        if '_' not in display_word(word,guessed_letters):
+            print("Congratulations! You've guessed the word:",word)
+            break  ]
+
+If there are no underscores left in the displayed word, it means all letters have been guessed correctly, and the player wins. 
+The game breaks out of the loop.
+
+8)Checking for Lose Condition:
+[ eg:
+
+        if attempts==0:
+            print("Sorry, you ran out of attempts. The word was:",word)
+            break         ]
+
+If the number of attempts reaches 0, the player loses, and the word is revealed. The game breaks out of the loop.
+
+9)Taking User Input:
+[  eg:
+        guess=input("Enter a letter: ").lower()  ]
+
+It prompts the user to input a letter to guess and converts it to lowercase.
+
+10)Input Validation:
+
+[ eg:
+        if len(guess) != 1 or not guess.isalpha():
+            print("Please enter a single letter.")
+            continue      ]
+
+It checks if the input is a single letter and is alphabetical. 
+If not, it prompts the user to enter a valid input and continues the loop.
+
+11)Checking for Repeated Guesses:
+[ eg:
+        if guess in guessed_letters:
+            print("You've already guessed that letter.")
+            continue    ]
+
+If the guessed letter has already been guessed before, it notifies the user and continues the loop.
+
+12)Recording Guessed Letters:
+
+[ eg:
+        guessed_letters.append(guess)  ]
+
+It adds the guessed letter to the list of guessed letters.
+
+13)Checking for Correct Guess:
+
+[ eg:
+        if guess not in word:
+            attempts -=1
+            print("Incorrect guess!")   ]
+
+If the guessed letter is not in the word, it decrements the number of attempts and notifies the user of an incorrect guess.
+
+                              ---------------------------THE END---------------------
